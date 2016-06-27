@@ -5,7 +5,7 @@ MAINTAINER chrisanthropic <ctarwater@gmail.com>
 # docker run --rm -v $(pwd):/tmp/jekyll -w "/tmp/jekyll" -it -p 4000:4000 ctarwater/armhf-alpine-rpi-jekyll
 
 RUN apk upgrade --update \
- && apk add libatomic readline readline-dev libxml2 libxml2-dev \
+ && apk add bash libatomic readline readline-dev libxml2 libxml2-dev \
         ncurses-terminfo-base ncurses-terminfo \
         libxslt libxslt-dev zlib-dev zlib \
         ruby ruby-dev yaml yaml-dev \
@@ -21,6 +21,12 @@ RUN apk upgrade --update \
             yaml-dev libffi-dev libxml2-dev \
  && apk search --update
 
+ADD run.sh /root/ 
+RUN chmod +x /root/run.sh
+ 
 EXPOSE 4000
  
-ENTRYPOINT ["jekyll"]
+WORKDIR /root
+
+ENTRYPOINT ["/root/run.sh"]
+#CMD ["watch"]
