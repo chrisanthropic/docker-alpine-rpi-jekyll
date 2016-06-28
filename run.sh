@@ -1,7 +1,8 @@
 #!/bin/bash
 
 if [ -f /tmp/jekyll/Gemfile ]; then
-  bundle install --binstubs --path=vendor
+  cd /tmp/jekyll
+  bundle install
 fi
 
-jekyll
+bundle exec jekyll "$@"
