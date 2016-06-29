@@ -5,4 +5,4 @@ if [ -f /tmp/jekyll/Gemfile ]; then
   bundle install
 fi
 
-bundle exec jekyll "$@"
+bundle exec rake "$@"
